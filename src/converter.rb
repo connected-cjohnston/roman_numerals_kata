@@ -40,11 +40,11 @@ class Converter
 
   private
 
-  def subtractive?(next_val, current_val)
-    ROMAN_NUMERALS[next_val] && ROMAN_NUMERALS[current_val] < ROMAN_NUMERALS[next_val]
-  end
-
   def calculate(val, next_val)
     subtractive?(next_val, val) ? ROMAN_NUMERALS[val] * -1 : ROMAN_NUMERALS[val]
+  end
+
+  def subtractive?(next_val, current_val)
+    ROMAN_NUMERALS[next_val] && ROMAN_NUMERALS[current_val] < ROMAN_NUMERALS[next_val]
   end
 end

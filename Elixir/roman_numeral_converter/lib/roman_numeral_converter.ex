@@ -13,9 +13,12 @@ defmodule RomanNumeralConverter do
     "M" => 1000,
   }
 
+  @type roman_numeral() :: String.t()
+
   @doc """
   Convert a roman numeral to an integer
   """
+  @spec to_integer(roman_numeral) :: integer
   def to_integer(input) do
     String.graphemes(input) |> add()
   end

@@ -23,7 +23,7 @@ defmodule RomanNumeralConverter do
   defp add([]), do: 0
   defp add([x]), do: @roman_numerals[x]
   defp add([x | tail]) do
-    [y | _] = tail
+    y = List.first(tail)
 
     if y != nil and @roman_numerals[x] < @roman_numerals[y] do
       -@roman_numerals[x] + add(tail)

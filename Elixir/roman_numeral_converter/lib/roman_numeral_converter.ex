@@ -10,20 +10,25 @@ defmodule RomanNumeralConverter do
     "L" => 50,
     "C" => 100,
     "D" => 500,
-    "M" => 100,
+    "M" => 1000,
   }
 
   @doc """
   Convert a roman numeral to an integer
   """
   def to_integer(input) do
-    @roman_numerals[input]
+    String.graphemes(input) |> add()
   end
 
-  @doc """
-  Convert an integer to a roman numeral
-  """
-  def to_roman(input) do
-    :roman
+  defp add([]), do: 0
+  defp add([x]), do: @roman_numerals[x]
+  defp add([x | tail]) do
+    [y | _] = tail
+
+    if y != nil and @roman_numerals[x] < @roman_numerals[y] do
+      -@roman_numerals[x] + add(tail)
+    else
+      @roman_numerals[x] + add(tail)
+    end
   end
 end
